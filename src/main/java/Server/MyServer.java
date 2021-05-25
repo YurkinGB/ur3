@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class MyServer {
@@ -62,7 +61,7 @@ public class MyServer {
                             String nick = Authentication.auth(part[1], part[2]);
                             if (nick != null) {
                                 users.add(new User(part[1], part[2], nick));
-                                Controller.setName(nick);
+                                out.writeUTF("/ " + nick);
                                 out.writeUTF("Аутентификация пройдена, вы вошли под ником " + nick);
                                 out.writeUTF("Чтобы изменить ник введите команду \'/upd новый_ник\' ");
                                 break;
@@ -77,10 +76,6 @@ public class MyServer {
 
                 while (true) {
                     String strClient = in.readUTF();
-                    if (strClient.equals("/end")) {
-                        out.writeUTF(strClient);
-                        break;
-                    }
 
                     if (strClient.startsWith("/up")){
                         String[] part = strClient.split(" ");

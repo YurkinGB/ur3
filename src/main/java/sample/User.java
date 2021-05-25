@@ -1,5 +1,8 @@
 package sample;
 
+import java.io.File;
+import java.io.IOException;
+
 public class User {
     private String login;
     private String password;
@@ -9,6 +12,16 @@ public class User {
         this.login = login;
         this.password = password;
         this.nick = nick;
+
+        File logFile = new File(nick + ".txt");
+            if (!logFile.exists()) {
+                try {
+                    logFile.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
     }
 
     public String getLogin() {

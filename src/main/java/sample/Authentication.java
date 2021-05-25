@@ -1,9 +1,6 @@
 package sample;
 
-import Server.MyServer;
-
 import java.sql.*;
-import java.util.List;
 
 public class Authentication {
     static {
